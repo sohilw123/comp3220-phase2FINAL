@@ -20,7 +20,7 @@ public class Dataset {
     String[] data = csvLine.split(",");
     String name = data[0];
     String description = data[1];
-    String source = data[3];
+    String source = data[2];
     // Frequency updateFrequency = Frequency.valueOf(data[4]);
     return new Dataset(name, description, source);
   }
