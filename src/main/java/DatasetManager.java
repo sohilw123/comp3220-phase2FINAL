@@ -30,21 +30,27 @@ public class DatasetManager {
     writeToCSV();
     return dataset;
   }
-  
-//Method to find a dataset by name
+
+  //Method to find a dataset by name
   public Dataset findDatasetByName(String name) {
-      for (Dataset dataset : datasets) {
-          if (dataset.getName().equals(name)) {
-              return dataset;
-          }
+    for (Dataset dataset : datasets) {
+      if (dataset.getName().equals(name)) {
+        return dataset;
       }
-      return null; // Dataset not found
+    }
+    return null; // Dataset not found
   }
 
   // Method to delete a dataset from both the list and CSV file
   public void deleteDataset(Dataset dataset) {
     datasets.remove(dataset);
     writeToCSV();
+  }
+
+  public void printDatasets() {
+      for (Dataset dataset : datasets) {
+          System.out.println(dataset);
+      }
   }
 
   // Method to load datasets from CSV file
@@ -71,7 +77,7 @@ public class DatasetManager {
         StringBuilder sb = new StringBuilder();
         sb.append(dataset.getName()).append(",");
         sb.append(dataset.getDescription()).append(",");
-        sb.append(dataset.getSource()).append(",");
+        sb.append(dataset.getSource()).append("\n");
         // sb.append(dataset.getUpdateFrequency()).append("\n");
         bw.write(sb.toString());
       }

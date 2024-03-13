@@ -27,18 +27,21 @@ public class Main {
             
             switch (choice) {
                 case 1:
-                    addDataset(backend, scanner);
+                    displayDatasets(backend);
                     break;
                 case 2:
-                    updateDataset(backend, scanner);
+                    addDataset(backend, scanner);
                     break;
                 case 3:
-                    deleteDataset(backend, scanner);
+                    updateDataset(backend, scanner);
                     break;
                 case 4:
-                    trackDatasetUsage(backend, scanner);
+                    deleteDataset(backend, scanner);
                     break;
                 case 5:
+                    trackDatasetUsage(backend, scanner);
+                    break;
+                case 6:
                     // Exit
                     System.out.println("Exiting program...");
                     return;
@@ -51,12 +54,17 @@ public class Main {
     // Display menu options
     private static void displayMenu() {
         System.out.println("=== Menu ===");
-        System.out.println("1. Add Dataset");
-        System.out.println("2. Update Dataset");
-        System.out.println("3. Delete Dataset");
-        System.out.println("4. Track Dataset Usage");
-        System.out.println("5. Exit");
+        System.out.println("1. List Datasets");
+        System.out.println("2. Add Dataset");
+        System.out.println("3. Update Dataset");
+        System.out.println("4. Delete Dataset");
+        System.out.println("5. Track Dataset Usage");
+        System.out.println("6. Exit");
         System.out.print("Enter your choice: ");
+    }
+
+    private static void displayDatasets(Backend backend) {
+        backend.getDatasetManager().printDatasets();
     }
 
     // Add a dataset

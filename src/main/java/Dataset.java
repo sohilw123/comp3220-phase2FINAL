@@ -35,6 +35,15 @@ public class Dataset {
     return sb.toString();
   }
 
+  @Override
+  public String toString() {
+    return "Dataset{" +
+            "name: " + name +
+            ", description: " + description +
+            ", source: " + source +
+            '}';
+  }
+
   // Getter and setter methods
   public String getName() {
     return name;
