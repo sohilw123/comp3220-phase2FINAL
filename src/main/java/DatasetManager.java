@@ -13,9 +13,10 @@ public class DatasetManager {
   }
 
   // Method to add a dataset to both the list and CSV file
-  public void addDataset(Dataset dataset) {
+  public Dataset addDataset(Dataset dataset) {
     datasets.add(dataset);
     writeToCSV();
+    return dataset;
   }
 
   // Method to update a dataset in both the list and CSV file
