@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatasetManager {
-  private List<Dataset> datasets;
+  private final List<Dataset> datasets;
   private final String CSV_FILE_PATH = "src/main/resources/datasets.csv"; // Path to the CSV file
 
   // Constructor
@@ -20,7 +20,7 @@ public class DatasetManager {
   }
 
   // Method to update a dataset in both the list and CSV file
-  public void updateDataset(Dataset dataset) {
+  public Dataset updateDataset(Dataset dataset) {
     for (int i = 0; i < datasets.size(); i++) {
       if (datasets.get(i).getName().equals(dataset.getName())) {
         datasets.set(i, dataset);
@@ -28,6 +28,7 @@ public class DatasetManager {
       }
     }
     writeToCSV();
+    return dataset;
   }
   
 //Method to find a dataset by name
@@ -54,10 +55,9 @@ public class DatasetManager {
         String[] data = line.split(",");
         String name = data[0];
         String description = data[1];
-        String[] fields = data[2].split("\\|"); // Splitting fields using '|' delimiter
-        String source = data[3];
+        String source = data[2];
         // Frequency updateFrequency = Frequency.valueOf(data[4]);
-        datasets.add(new Dataset(name, description, fields, source));
+        datasets.add(new Dataset(name, description, source));
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -71,9 +71,7 @@ public class DatasetManager {
         StringBuilder sb = new StringBuilder();
         sb.append(dataset.getName()).append(",");
         sb.append(dataset.getDescription()).append(",");
-        sb.append(String.join("|", dataset.getFields())).append(",");
         sb.append(dataset.getSource()).append(",");
-        sb.append("placeholder").append("\n");
         // sb.append(dataset.getUpdateFrequency()).append("\n");
         bw.write(sb.toString());
       }

@@ -5,7 +5,7 @@ import java.util.Map;
 public class Backend {
     private DatasetManager datasetManager;
     private UsageStatisticsManager usageStatsManager;
-    private final String USER_CREDENTIALS_FILE_PATH = "src/main/resources/test.csv"; // Path to the CSV file
+    private final String USER_CREDENTIALS_FILE_PATH = "src/main/resources/users.csv"; // Path to the CSV file
 
     // Constructor
     public Backend(DatasetManager datasetManager, UsageStatisticsManager usageStatsManager) {

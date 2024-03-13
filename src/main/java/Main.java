@@ -65,12 +65,10 @@ public class Main {
         String name = scanner.nextLine();
         System.out.print("Enter dataset description: ");
         String description = scanner.nextLine();
-        System.out.print("Enter dataset fields (comma-separated): ");
-        String[] fields = scanner.nextLine().split(",");
         System.out.print("Enter dataset source: ");
         String source = scanner.nextLine();
         
-        Dataset dataset = new Dataset(name, description, fields, source);
+        Dataset dataset = new Dataset(name, description, source);
         backend.getDatasetManager().addDataset(dataset);
         System.out.println("Dataset added successfully.");
     }
@@ -83,13 +81,10 @@ public class Main {
         if (dataset != null) {
             System.out.print("Enter new dataset description: ");
             String description = scanner.nextLine();
-            System.out.print("Enter new dataset fields (comma-separated): ");
-            String[] fields = scanner.nextLine().split(",");
             System.out.print("Enter new dataset source: ");
             String source = scanner.nextLine();
 
             dataset.setDescription(description);
-            dataset.setFields(fields);
             dataset.setSource(source);
 
             backend.getDatasetManager().updateDataset(dataset);

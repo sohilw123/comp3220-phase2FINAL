@@ -4,15 +4,13 @@ import java.util.Arrays;
 public class Dataset {
   private String name;
   private String description;
-  private String[] fields;
   private String source;
   // private Frequency updateFrequency;
 
   // Constructor
-  public Dataset(String name, String description, String[] fields, String source) {
+  public Dataset(String name, String description, String source) {
     this.name = name;
     this.description = description;
-    this.fields = fields;
     this.source = source;
     // this.updateFrequency = updateFrequency;
   }
@@ -22,10 +20,9 @@ public class Dataset {
     String[] data = csvLine.split(",");
     String name = data[0];
     String description = data[1];
-    String[] fields = data[2].split("\\|");
     String source = data[3];
     // Frequency updateFrequency = Frequency.valueOf(data[4]);
-    return new Dataset(name, description, fields, source);
+    return new Dataset(name, description, source);
   }
 
   // Method to convert dataset to CSV format
@@ -33,7 +30,6 @@ public class Dataset {
     StringBuilder sb = new StringBuilder();
     sb.append(name).append(",");
     sb.append(description).append(",");
-    sb.append(String.join("|", fields)).append(",");
     sb.append(source).append(",");
     sb.append("placeholder");
     return sb.toString();
@@ -54,14 +50,6 @@ public class Dataset {
 
   public void setDescription(String description) {
     this.description = description;
-  }
-
-  public String[] getFields() {
-    return fields;
-  }
-
-  public void setFields(String[] fields) {
-    this.fields = fields;
   }
 
   public String getSource() {
