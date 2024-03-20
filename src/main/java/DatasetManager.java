@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatasetManager {
+  private List<DatasetObserver> observers = new ArrayList<>();
   private final List<Dataset> datasets;
   private final String CSV_FILE_PATH = "src/main/resources/datasets.csv"; // Path to the CSV file
 
@@ -83,6 +84,18 @@ public class DatasetManager {
       }
     } catch (IOException e) {
       e.printStackTrace();
+    }
+  }
+
+  // Method to add observers
+  public void addObserver(DatasetObserver observer) {
+    observers.add(observer);
+  }
+
+  // Method to notify observers about changes in datasets
+  public void notifyObservers() {
+    for (DatasetObserver observer : observers) {
+      observer.update();
     }
   }
 }

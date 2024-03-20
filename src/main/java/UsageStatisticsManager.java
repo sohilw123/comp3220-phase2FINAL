@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UsageStatisticsManager {
+public class UsageStatisticsManager implements DatasetObserver {
 	private final String USAGE_STATS_FILE_PATH = "src/main/resources/usage_statistics.csv"; // Path to the CSV file
 
 	private static UsageStatisticsManager instance;
@@ -65,5 +65,12 @@ public class UsageStatisticsManager {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	public void update() {
+		// Logic to update usage statistics based on changes in datasets
+		System.out.println("Usage statistics updated.");
+
 	}
 }

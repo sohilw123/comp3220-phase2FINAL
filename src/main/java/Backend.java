@@ -11,6 +11,7 @@ public class Backend {
     public Backend(DatasetManager datasetManager, UsageStatisticsManager usageStatsManager) {
         this.datasetManager = datasetManager;
         this.usageStatsManager = usageStatsManager;
+        datasetManager.addObserver(usageStatsManager);
         createIfNotExists(USER_CREDENTIALS_FILE_PATH); // Create user credentials file if not exists
     }
 
