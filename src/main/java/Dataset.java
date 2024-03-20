@@ -1,6 +1,3 @@
-import java.io.*;
-import java.util.Arrays;
-
 public class Dataset {
   private String name;
   private String description;
@@ -27,12 +24,10 @@ public class Dataset {
 
   // Method to convert dataset to CSV format
   public String toCSV() {
-    StringBuilder sb = new StringBuilder();
-    sb.append(name).append(",");
-    sb.append(description).append(",");
-    sb.append(source).append(",");
-    sb.append("placeholder");
-    return sb.toString();
+      return name + "," +
+            description + "," +
+            source + "," +
+            "placeholder";
   }
 
   @Override

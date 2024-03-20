@@ -1,3 +1,5 @@
-Population,City Population Data,Census
-Weather,City Weather Data,Meteorological
-Traffic,City Traffic Data,Transportation
+Population,City Population DataManager,Census
+Weather,City Weather DataManager,Meteorological
+Traffic,New City Traffic DataManager,Transportation
+Hospitals,Area hospitals locations,Hospitals.csv
+3 Day Parking Infraction YTD,3 day parking infraction YTD,3Day_Parking_Infraction_YTD.csv

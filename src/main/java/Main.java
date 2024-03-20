@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Backend backend = new Backend(new DatasetManager(), new UsageStatisticsManager());
+        UsageStatisticsManager usageStatisticsManagerInstance = UsageStatisticsManager.getInstance();
+        Backend backend = new Backend(new DatasetManager(), usageStatisticsManagerInstance);
         Scanner scanner = new Scanner(System.in);
 
         // Authentication
@@ -33,15 +34,18 @@ public class Main {
                     addDataset(backend, scanner);
                     break;
                 case 3:
-                    updateDataset(backend, scanner);
+                    viewDatasetData(backend, scanner);
                     break;
                 case 4:
-                    deleteDataset(backend, scanner);
+                    updateDataset(backend, scanner);
                     break;
                 case 5:
-                    trackDatasetUsage(backend, scanner);
+                    deleteDataset(backend, scanner);
                     break;
                 case 6:
+                    trackDatasetUsage(backend, scanner);
+                    break;
+                case 7:
                     // Exit
                     System.out.println("Exiting program...");
                     return;
@@ -56,10 +60,11 @@ public class Main {
         System.out.println("=== Menu ===");
         System.out.println("1. List Datasets");
         System.out.println("2. Add Dataset");
-        System.out.println("3. Update Dataset");
-        System.out.println("4. Delete Dataset");
-        System.out.println("5. Track Dataset Usage");
-        System.out.println("6. Exit");
+        System.out.println("3. View Dataset Data");
+        System.out.println("4. Update Dataset");
+        System.out.println("5. Delete Dataset");
+        System.out.println("6. Track Dataset Usage");
+        System.out.println("7. Exit");
         System.out.print("Enter your choice: ");
     }
 
@@ -79,6 +84,19 @@ public class Main {
         Dataset dataset = new Dataset(name, description, source);
         backend.getDatasetManager().addDataset(dataset);
         System.out.println("Dataset added successfully.");
+    }
+
+    private static void viewDatasetData(Backend backend, Scanner scanner) {
+        System.out.print("Enter dataset name to view: ");
+        String name = scanner.nextLine();
+        Dataset dataset = backend.getDatasetManager().findDatasetByName(name);
+
+        if (dataset != null) {
+            Data datasetData = new Data(dataset);
+            System.out.println(datasetData);
+        } else {
+            System.out.println("Dataset not found.");
+        }
     }
 
     // Update a dataset

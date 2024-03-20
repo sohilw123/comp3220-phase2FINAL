@@ -5,9 +5,19 @@ import java.util.Map;
 public class UsageStatisticsManager {
 	private final String USAGE_STATS_FILE_PATH = "src/main/resources/usage_statistics.csv"; // Path to the CSV file
 
+	private static UsageStatisticsManager instance;
+
 	// Constructor
-	public UsageStatisticsManager() {
+	private UsageStatisticsManager() {
 		createIfNotExists(USAGE_STATS_FILE_PATH); // Create usage statistics file if not exists
+	}
+
+	// Method to get the singleton instance
+	public static UsageStatisticsManager getInstance() {
+		if (instance == null) {
+			instance = new UsageStatisticsManager();
+		}
+		return instance;
 	}
 
 	// Method to track dataset usage
