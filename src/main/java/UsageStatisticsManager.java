@@ -2,6 +2,9 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Manages usage statistics for datasets and implements the DatasetObserver interface.
+ */
 public class UsageStatisticsManager implements DatasetObserver {
 	private final String USAGE_STATS_FILE_PATH = "src/main/resources/usage_statistics.csv"; // Path to the CSV file
 
@@ -12,7 +15,11 @@ public class UsageStatisticsManager implements DatasetObserver {
 		createIfNotExists(USAGE_STATS_FILE_PATH); // Create usage statistics file if not exists
 	}
 
-	// Method to get the singleton instance
+	/**
+	 * Gets the singleton instance of UsageStatisticsManager.
+	 *
+	 * @return The singleton instance of UsageStatisticsManager.
+	 */
 	public static UsageStatisticsManager getInstance() {
 		if (instance == null) {
 			instance = new UsageStatisticsManager();
@@ -20,7 +27,11 @@ public class UsageStatisticsManager implements DatasetObserver {
 		return instance;
 	}
 
-	// Method to track dataset usage
+	/**
+	 * Tracks the usage of a dataset.
+	 *
+	 * @param dataset The dataset to track usage for.
+	 */
 	public void trackUsage(Dataset dataset) {
 		Map<String, Integer> stats = readUsageStatistics();
 		String datasetName = dataset.getName();
