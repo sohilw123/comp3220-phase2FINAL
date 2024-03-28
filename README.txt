@@ -10,6 +10,7 @@ Data: Contains classes related to dataset management and data processing.
 UsageStatistics: Contains classes for tracking and managing usage statistics.
 Main: Contains the main class to run the CDMS program.
 Interfaces: Contains interfaces used for defining observers and dataset operations.
+
 Class Descriptions
 Backend: This class handles user authentication and interacts with the dataset manager and usage statistics manager.
 Data: The Data class manages dataset information, including loading datasets from CSV files and providing methods for dataset manipulation.
@@ -18,6 +19,7 @@ DatasetManager: Manages datasets, including adding, updating, and deleting datas
 DatasetObserver: An interface implemented by classes that observe dataset changes.
 Program: The main class responsible for starting the CDMS program and handling user interactions.
 UsageStatisticsManager: Manages usage statistics, including tracking dataset usage and writing statistics to a CSV file.
+
 How to Run
 To run the CDMS prototype, follow these steps:
 
