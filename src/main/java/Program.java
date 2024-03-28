@@ -1,7 +1,13 @@
 import java.util.Scanner;
 
+/**
+ * Represents the main program logic.
+ */
 public class Program {
 
+    /**
+     * Starts the program.
+     */
     public void start() {
         UsageStatisticsManager usageStatisticsManagerInstance = UsageStatisticsManager.getInstance();
         Backend backend = new Backend(new DatasetManager(), usageStatisticsManagerInstance);
@@ -69,6 +75,11 @@ public class Program {
         System.out.print("Enter your choice: ");
     }
 
+    /**
+     * Displays the list of datasets.
+     *
+     * @param backend The backend containing dataset manager.
+     */
     private static void displayDatasets(Backend backend) {
         backend.getDatasetManager().printDatasets();
     }
