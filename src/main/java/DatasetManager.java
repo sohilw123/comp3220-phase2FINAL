@@ -2,25 +2,41 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Manages datasets, including adding, updating, and deleting datasets, as well as loading and writing datasets to CSV files.
+ */
 public class DatasetManager {
   private List<DatasetObserver> observers = new ArrayList<>();
   private final List<Dataset> datasets;
   private final String CSV_FILE_PATH = "src/main/resources/datasets.csv"; // Path to the CSV file
 
-  // Constructor
+  /**
+   * Constructs a DatasetManager object.
+   * Initializes the list of datasets and loads datasets from the CSV file.
+   */
   public DatasetManager() {
     this.datasets = new ArrayList<>();
     loadFromCSV(); // Load datasets from CSV file on initialization
   }
 
-  // Method to add a dataset to both the list and CSV file
+  /**
+   * Adds a dataset to both the list and CSV file.
+   *
+   * @param dataset The dataset to add.
+   * @return The added dataset.
+   */
   public Dataset addDataset(Dataset dataset) {
     datasets.add(dataset);
     writeToCSV();
     return dataset;
   }
 
-  // Method to update a dataset in both the list and CSV file
+  /**
+   * Updates a dataset in both the list and CSV file.
+   *
+   * @param dataset The dataset to update.
+   * @return The updated dataset.
+   */
   public Dataset updateDataset(Dataset dataset) {
     for (int i = 0; i < datasets.size(); i++) {
       if (datasets.get(i).getName().equals(dataset.getName())) {
@@ -32,7 +48,12 @@ public class DatasetManager {
     return dataset;
   }
 
-  //Method to find a dataset by name
+  /**
+   * Finds a dataset by name.
+   *
+   * @param name The name of the dataset to find.
+   * @return The found dataset, or null if not found.
+   */
   public Dataset findDatasetByName(String name) {
     for (Dataset dataset : datasets) {
       if (dataset.getName().equals(name)) {
@@ -42,12 +63,19 @@ public class DatasetManager {
     return null; // Dataset not found
   }
 
-  // Method to delete a dataset from both the list and CSV file
+  /**
+   * Deletes a dataset from both the list and CSV file.
+   *
+   * @param dataset The dataset to delete.
+   */
   public void deleteDataset(Dataset dataset) {
     datasets.remove(dataset);
     writeToCSV();
   }
 
+  /**
+   * Prints all datasets.
+   */
   public void printDatasets() {
       for (Dataset dataset : datasets) {
           System.out.println(dataset);
@@ -87,12 +115,18 @@ public class DatasetManager {
     }
   }
 
-  // Method to add observers
+  /**
+   * Adds an observer to the list of observers.
+   *
+   * @param observer The observer to add.
+   */
   public void addObserver(DatasetObserver observer) {
     observers.add(observer);
   }
 
-  // Method to notify observers about changes in datasets
+  /**
+   * Notifies observers about changes in datasets.
+   */
   public void notifyObservers() {
     for (DatasetObserver observer : observers) {
       observer.update();
