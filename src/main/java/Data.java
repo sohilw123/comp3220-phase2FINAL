@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Represents a dataset and provides methods to read data from a CSV file.
+ */
 public class Data {
 
     private String sourcePath = "src/main/resources/datasets/";
@@ -11,6 +14,11 @@ public class Data {
     private ArrayList<DataInfo> data;
     Dataset dataset;
 
+    /**
+     * Constructs a Data object for a specified dataset.
+     *
+     * @param dataset The dataset for which data is being read.
+     */
     public Data(Dataset dataset) {
         this.dataset = dataset;
         sourcePath += dataset.getSource();
@@ -19,6 +27,9 @@ public class Data {
         readFromCSV();
     }
 
+    /**
+     * Reads data from the CSV file.
+     */
     private void readFromCSV() {
         try (BufferedReader br = new BufferedReader(new FileReader(sourcePath))) {
             String line;
@@ -39,6 +50,11 @@ public class Data {
         }
     }
 
+    /**
+     * Generates a string representation of the data.
+     *
+     * @return The string representation of the data.
+     */
     @Override
     public String toString() {
         StringBuilder allData = new StringBuilder();
@@ -54,17 +70,33 @@ public class Data {
     }
 }
 
+/**
+ * Represents information about a single data entry.
+ */
 class DataInfo {
     private final ArrayList<String> dataInfo;
 
+    /**
+     * Constructs a DataInfo object.
+     */
     public DataInfo() {
         dataInfo = new ArrayList<>();
     }
 
+    /**
+     * Adds data to the DataInfo object.
+     *
+     * @param data The data to add.
+     */
     public void addData(String[] data) {
         Collections.addAll(dataInfo, data);
     }
 
+    /**
+     * Generates a string representation of the data information.
+     *
+     * @return The string representation of the data information.
+     */
     @Override
     public String toString() {
         StringBuilder dataRow = new StringBuilder();
